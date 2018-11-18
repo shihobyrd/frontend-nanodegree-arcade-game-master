@@ -1,5 +1,5 @@
 // Enemies our player must avoid
-var Enemy = function(x, y, s) {
+var Enemy = function(x, y, s, r) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -9,12 +9,14 @@ var Enemy = function(x, y, s) {
     this.x = x;
     this.y = y;
     this.speed = s;
+    this.row = r;
 };
 
 //global variables
+const numberOfRows = 11;
 const playerInitialX = 202;
-const playerInitialY = 375;
-const playerMaxY = playerInitialY - 83 * 5;
+const playerInitialY = 790;
+const playerMaxY = playerInitialY - 83 * (numberOfRows - 1);
 const playerMinY = playerInitialY;
 
 
@@ -75,20 +77,21 @@ Enemy.prototype.update = function(dt) {
 
     //console.log("Bug Location: ", Math.floor(bottomRowEnemy.x), " ", Math.floor(bottomRowEnemy.x + 101));
     //console.log("Player: ", player.x + playerFaceStart, " ", player.x + playerFaceEnd);
+    /*
+    if (player.playerCurrentYTile > 0 && player.playerCurrentYTile < numberOfRows && 
+        allEnemies[player.playerCurrentYTile] !== undefined) {
+        console.log(this.row)
+        checkColllision(allEnemies[player.playerCurrentYTile]);
+    }
+    */
 
-    if (player.playerCurrentYTile === 1) {
-        //check top bug
-        checkColllision(topRowEnemy);
-    } else if ( player.playerCurrentYTile === 2) {
-        //check middle bug
-        checkColllision(middleRowEnemy);
-    } else if ( player.playerCurrentYTile === 3) {
-        //check bottom bug
-        checkColllision(bottomRowEnemy);
-        //resetPlayer();
+    if (this.row === player.playerCurrentYTile) {
+        checkColllision(this);
     }
 
 };
+
+
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
@@ -107,7 +110,7 @@ function winGame() {
 function resetPlayer() {
     player.x = playerInitialX;
     player.y = playerInitialY;
-    player.playerCurrentYTile = 5;
+    player.playerCurrentYTile = numberOfRows - 1;
 }
 
 // Now write your own player class
@@ -118,7 +121,7 @@ var Player = function(x, y) {
     this.sprite = 'images/char-boy.png';
     this.x = x;
     this.y = y;
-    this.playerCurrentYTile = 5;
+    this.playerCurrentYTile = numberOfRows - 1;
     this.playerFaceStart = this.x + 30;
     this.playerFaceEnd = this.x + 80;
 };
@@ -149,7 +152,7 @@ Player.prototype.handleInput = function(direction) {
     this.playerFaceEnd = this.x + 80;
 
     console.log(player.playerCurrentYTile);
-    if (player.y === playerMaxY) {
+    if (player.playerCurrentYTile === 0) {
         winGame();
     }
 };
@@ -177,11 +180,8 @@ document.addEventListener('keyup', function(e) {
 
 const player = new Player(playerInitialX, playerInitialY);
 
-const topRowEnemy = new Enemy(-101, topRowY, randomSpeed());
-const middleRowEnemy = new Enemy(-101, middleRowY, randomSpeed());
-const bottomRowEnemy = new Enemy(-101, bottomRowY, randomSpeed());
-
 let allEnemies = [];
-allEnemies.push(topRowEnemy);
-allEnemies.push(middleRowEnemy);
-allEnemies.push(bottomRowEnemy);
+
+for (var i = 1; i < numberOfRows - 1; i++) {
+    allEnemies.push(new Enemy(-101, topRowY + (i - 1) * 83, randomSpeed(), i));
+}

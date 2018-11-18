@@ -24,8 +24,15 @@ var Engine = (function(global) {
         ctx = canvas.getContext('2d'),
         lastTime;
 
+    window.addEventListener("keydown", function(e) {
+        // space and arrow keys
+        if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+            e.preventDefault();
+        }
+    }, false);
+
     canvas.width = 505;
-    canvas.height = 606;
+    canvas.height = 101 * 11;
     doc.body.appendChild(canvas);
 
     /* This function serves as the kickoff point for the game loop itself
@@ -108,13 +115,18 @@ var Engine = (function(global) {
          */
         var rowImages = [
                 'images/water-block.png',   // Top row is water
-                'images/stone-block.png',   // Row 1 of 3 of stone
-                'images/stone-block.png',   // Row 2 of 3 of stone
-                'images/stone-block.png',   // Row 3 of 3 of stone
-                'images/grass-block.png',   // Row 1 of 2 of grass
-                'images/grass-block.png'    // Row 2 of 2 of grass
+                'images/stone-block.png',   // Row 1 of 9 of stone
+                'images/stone-block.png',   // Row 2 of 9 of stone
+                'images/stone-block.png',   // Row 3 of 9 of stone
+                'images/stone-block.png',   // Row 4 of 9 of stone
+                'images/stone-block.png',   // Row 5 of 9 of stone
+                'images/stone-block.png',   // Row 6 of 9 of stone
+                'images/stone-block.png',   // Row 7 of 9 of stone
+                'images/stone-block.png',   // Row 8 of 9 of stone
+                'images/stone-block.png',   // Row 8 of 9 of stone
+                'images/grass-block.png',   // Row 1 of 1 of grass
             ],
-            numRows = 6,
+            numRows = 11,
             numCols = 5,
             row, col;
         
