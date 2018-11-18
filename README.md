@@ -1,20 +1,17 @@
 # Classic Arcade Game Clone Project
 
-## Table of Contents
+Building this classic Arcade Game was one of the assignments that I worked on through Udacity to complete Front-End Web Developer Nanodegree Program. A HTML file, a CSS file, 3 JavaScript files, and some images for the game were already provided by Udacity. For this project, it was necessary for me to code mostly in the app.js file to be able to construct the basic functionality in the game.  
 
-- [Instructions](#instructions)
-- [Contributing](#contributing)
+## Overview
 
-## Instructions
+In the beginning of the game, the player image will be placed on the middle tile of the bottom row. The player is able to move up, down, right, and down by using arrow keys. Also, there are 3 enemies, ladybugs, that are placed on the 3 stone tiles. They show up from the left of the canvas and move right at a constant speed; however, their speeds vary each time they disappear and show up from the left side. The player need to reach the water tile without colliding with the enemies to be able to win the game. When the enemy collides with the player icon or once you win the game, the player icon will be placed back to where it started.
 
-Use this [rubric](https://review.udacity.com/#!/rubrics/2013/view) for self-checking your submission.
+## How to Run
 
-Make sure the functions you write are **object-oriented** - either class functions (like `Player` and `Enemy`) or class prototype functions such as `Enemy.prototype.checkCollisions`. Also make sure that the keyword `this` is used appropriately within your class and class prototype functions to refer to the object the function is called upon.
+The game will run in any modern browser, by opening the index.html file.
 
-Your **README.md** file should be updated with instructions on both how to 1. Run and 2. Play your arcade game.
+## How to Play
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+- Move the player with the arrow keys
+- If you collide with an enemy, you will be placed back at the start
+- If you reach the water, you win, and will be placed back at the start
