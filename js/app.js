@@ -71,22 +71,22 @@ Player.prototype.render = function() {
 // Player moves in correct direction
 Player.prototype.handleInput = function(direction) {
     
-    if (direction === 'left' && player.x !== 0) {
-        player.x -= 101;
-    } else if (direction === 'right' && player.x !== 404) {
-        player.x += 101;
-    } else if (direction === 'up' && player.y !== playerMaxY) {
-        player.playerCurrentYTile -= 1;
-        player.y -= 83;
-    } else if (direction === 'down' && player.y !== playerMinY) {
-        player.playerCurrentYTile += 1;
-        player.y += 83;
+    if (direction === 'left' && this.x !== 0) {
+        this.x -= 101;
+    } else if (direction === 'right' && this.x !== 404) {
+        this.x += 101;
+    } else if (direction === 'up' && this.y !== playerMaxY) {
+        this.playerCurrentYTile -= 1;
+        this.y -= 83;
+    } else if (direction === 'down' && this.y !== playerMinY) {
+        this.playerCurrentYTile += 1;
+        this.y += 83;
     }
 
     this.playerFaceStart = this.x + 30;
     this.playerFaceEnd = this.x + 80;
 
-    if (player.y === playerMaxY) {
+    if (this.y === playerMaxY) {
         winGame();
     }
 };
@@ -137,6 +137,8 @@ function checkColllision(enemy) {
 // Win Game
 function winGame() {
     resetPlayer();
+    window.alert('You won!');
+
 }
 
 // Reset player's position to the start point
